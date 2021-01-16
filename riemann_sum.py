@@ -5,7 +5,7 @@
 import math
 
 
-def compute_riemann_sums_in_sinx(interval: tuple, n: int) -> float:
+def compute_riemann_sums_in_sinx(domain: tuple, n: int) -> float:
     """
     This function computes the riemann sum given an <interval>
     and the number of rectangles, n
@@ -15,16 +15,16 @@ def compute_riemann_sums_in_sinx(interval: tuple, n: int) -> float:
     >>> compute_riemann_sums_in_sinx((0, math.pi), 4)
     1.896
     """
-    sum, count = 0, 1
+    total_area, i = 0, 1                                        # i is the interval
 
-    width = (interval[1] - interval[0]) / n                # compute the width
+    base = (domain[1] - domain[0]) / n                          # compute the base
 
-    while count < n:
-        right_endpoint = math.sin(width * count)           # compute the length
-        sum += width * right_endpoint                      # area = l * w
-        count += 1
+    while i < n:
+        height = math.sin(base * i)                             # compute the height
+        total_area += base * height                             # area = l * w
+        i += 1
 
-    return round(sum, 3)
+    return round(total_area, 3)
 
 x = compute_riemann_sums_in_sinx((0,math.pi), 200)
 print(x) # prints 2.0 :)
